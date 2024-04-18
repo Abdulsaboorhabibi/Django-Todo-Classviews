@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart DataTable</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      .btn-r {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #7b0011;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn-r:hover {
+        background-color: #aa0022;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Smart DataTable</h2>
+      <a href="{% url 'create-todo' %}" class="btn">Add New</a>
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for todo in object_list %}
+          <tr>
+            <td>{{todo.id}}</td>
+            <td width="100%">
+              <a href="{% url 'detail-todo' todo.id %}"> {{todo.title}}</a>
+            </td>
+            <td style="display: flex">
+              <a href="{% url 'todo-update' todo.id %}" class="btn">Edit</a>
+              <a href="{% url 'todo-delete' todo.id %}" class="btn-r">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  </body>
+</html>

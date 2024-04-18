@@ -1,0 +1,6 @@
+<a href="{% url 'todo-list'%}">Back</a>
+<h1>Create New todo</h1>
+<form action="" method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="Create" />
+</form>
